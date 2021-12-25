@@ -1,0 +1,166 @@
+$cinza-escuro: #464646;
+$cinza-claro: #eaeaeb;
+$rouxo: #A050BE;
+$amarelo: #fabe50;
+$branco: #FFFFFF; 
+$largura-img: 45%;
+%no-decotation{ text-decoration: none};
+%decoration{text-decoration: underline};
+%largunra-container{width: 80%};
+
+@mixin paragrafos {
+    font-size: .8rem;
+    color: $cinza-escuro;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+}
+
+@mixin flx($propriedade, $valor) {
+    display: flex;
+    #{$propriedade}:$valor;
+}
+
+@mixin titulo {
+    font-size: 1.5rem;
+    font-family: 'Opens Sans', sans-serif;
+    color: $cinza-escuro;   
+}
+
+@mixin for-phone-only{ @media screen and (max-width: 768px){@content} };
+@mixin for-tablet-only{ @media screen and (max-width: 1030px){@content} };
+
+
+@function calculaRem($size){
+   @return $size / 16px * 1rem;
+}
+@mixin fontSize($size){
+    font-size: calculaRem($size);
+}
+
+@import 'header','footer','sobre','artigo','colecao','contato';
+
+$direcoes: top, bottom, left, right;
+$marginSize: .8rem;
+
+@each $direcao in $direcoes {
+    %sem-margem-#{$direcao} {margin-#{$direcao}: 0;}
+    %margem-padrao-#{$direcao} {margin-#{$direcao}: $marginSize;}
+    %dobro-margem-#{$direcao} {margin-#{$direcao}: $marginSize * 2;}
+    %metade-margem-#{$direcao} {margin-#{$direcao}: $marginSize / 2;} 
+}
+
+
+
+
+
+
+
+
+
+
+.main{
+
+    @include flx(justify-content, space-around);
+
+
+    &__container{
+        padding: 2rem 0;
+    }
+
+    &__titulo{
+        @include titulo;
+        letter-spacing: 1.5;
+        @extend %no-decotation;
+        text-align: center;
+        margin: 0 .5rem;
+    }
+
+    &__subtitulo{
+        @include flx(align-items, center);
+        gap: 1rem;
+        @extend %margem-padrao-top, %margem-padrao-bottom;
+    }
+
+    &__data{
+        font-size: .8rem;
+        font-style: italic;
+    }
+
+    &__tag{
+        border: 1px solid $rouxo;
+        padding: .2rem .5rem;
+    }
+
+    &__post{
+        @include flx(align-items, center);
+        flex-direction: column;
+    } 
+
+    &__detalhes{
+        @include flx(align-items, center);
+        border: 1px solid $cinza-claro;
+        flex-direction: column;
+        gap: 1rem;
+        width: 80%;        
+        @include for-tablet-only{
+            width: 90%;
+        }
+    }
+
+    &__img{
+        width: 100%;
+    }
+
+    &__descricao{
+        @include paragrafos;
+        margin: 0 auto;
+        text-align: center;
+        max-width: 43rem;
+        padding: 0 .5rem;
+    }
+
+    &__btn{
+        color: $branco;
+        background-color: $amarelo;
+        font-family: 'Poppins', sans-serif;
+        font-size: .8rem;
+        font-weight: 600;
+        padding: .8rem 1.2rem;
+        @extend %no-decotation;
+        transition: .3s;
+
+        &:hover{
+            color: $amarelo;
+            background-color: $rouxo;
+        }
+    }
+
+    &__info{
+        @include flx(align-items, center);
+        border-top: 1px solid $cinza-claro ;
+        width: 100%;
+    }
+
+    &__autor{
+        border-right: 1px solid $cinza-claro;
+        padding: .7rem;
+        text-align: center;
+        width: 50%;
+    }
+
+    &__comentarios{
+        text-align: center;
+        width: 50%;
+    }
+
+    &__p{
+        @include paragrafos;
+        margin-right: 1px solid $cinza-escuro;
+    }
+
+    &__a{
+        @include paragrafos;
+        margin-right: 1px solid $cinza-escuro;
+        @extend %no-decotation;
+    }
+}

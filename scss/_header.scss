@@ -1,0 +1,46 @@
+.cabecalho{
+    @include flx(align-items, center);
+    flex-direction: column;
+
+    &__logo{
+        max-width: 21rem;        
+    }
+
+    .menu{
+        border-bottom: 1px solid $cinza-claro;
+        border-top: 1px solid $cinza-claro;
+        padding: 1rem 0;
+        width: 80%;
+        @include for-tablet-only{
+            width: 90%;
+        }
+
+        &__lista{
+            @include flx(justify-content, center);
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        &__itens{
+            position: relative;
+
+            &:not(:last-child)::after{
+                content: '';
+                background-color: $cinza-claro;
+                height: 1rem;
+                position: absolute;
+                right: -1rem;
+                width: 1px;
+            }
+        }
+        &__links{
+            @include paragrafos;
+            @extend %no-decotation;
+            &:hover{
+                color: $rouxo;
+                @extend %decoration;
+            }            
+        }
+    }
+}

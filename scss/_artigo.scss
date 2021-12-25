@@ -1,0 +1,68 @@
+.article{
+    @extend %largunra-container;
+    margin: 0 auto;
+    @include for-phone-only{
+        width: 90%;
+    }
+    @include for-tablet-only{
+        width: 90%;
+    }
+
+    &__title{
+        @include flx(justify-content, center);
+        background-color: $cinza-claro;
+        text-align: center;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem ;
+    }
+
+    &__h1{
+        @include titulo;
+    }
+
+    &__img{
+        width: 100%;
+    }
+
+    .breadcrumb{
+        @include flx(justify-content, center);
+        align-items: center;
+        gap: .6rem;
+        width: 100%;
+
+        &__link{
+            color: $cinza-escuro;
+            @extend %no-decotation;
+        }
+
+        &__img{
+            width: .7rem;
+        }   
+
+    }
+
+    &__details{
+        @include flx(justify-content, center);
+        align-items: center;
+        gap: 1rem;      
+        padding: 1rem;
+    }
+
+    &__tag{
+        border: 1px solid $rouxo;
+        padding: .2rem .5rem;
+    }
+
+    &__data{
+        font-size: .8rem;
+        font-style: italic;
+    }
+
+    &__content{
+        padding:0 1rem;
+        p{
+            @include paragrafos;
+        }
+    }    
+}
